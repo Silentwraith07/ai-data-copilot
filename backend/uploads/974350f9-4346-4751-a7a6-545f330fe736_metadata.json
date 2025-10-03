@@ -1,0 +1,58 @@
+{
+  "file_id": "974350f9-4346-4751-a7a6-545f330fe736",
+  "filename": "test.csv",
+  "schema": {
+    "name": "string",
+    "age": "integer",
+    "city": "string"
+  },
+  "summary": {
+    "numeric_columns": {
+      "age": {
+        "mean": 30.0,
+        "median": 30.0,
+        "min": 25.0,
+        "max": 35.0,
+        "std": 5.0
+      }
+    },
+    "categorical_columns": {
+      "name": {
+        "unique_count": 3,
+        "top_values": {
+          "John": 1,
+          "Jane": 1,
+          "Bob": 1
+        }
+      },
+      "city": {
+        "unique_count": 3,
+        "top_values": {
+          "NYC": 1,
+          "LA": 1,
+          "SF": 1
+        }
+      }
+    },
+    "missing_values": {}
+  },
+  "sample_rows": [
+    {
+      "name": "John",
+      "age": 25,
+      "city": "NYC"
+    },
+    {
+      "name": "Jane",
+      "age": 30,
+      "city": "LA"
+    },
+    {
+      "name": "Bob",
+      "age": 35,
+      "city": "SF"
+    }
+  ],
+  "row_count": 3,
+  "column_count": 3
+}

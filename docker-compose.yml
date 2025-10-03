@@ -1,0 +1,43 @@
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: ai-data-copilot-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - OPENAI_MODEL=${OPENAI_MODEL:-gpt-4o-mini}
+      - API_KEY=${API_KEY:-demo-api-key-change-in-production}
+    volumes:
+      - ./backend/uploads:/app/uploads
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: ai-data-copilot-frontend
+    ports:
+      - "8501:8501"
+    depends_on:
+      - backend
+    networks:
+      - app-network
+    environment:
+      - BACKEND_URL=http://backend:8000
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  uploads:
